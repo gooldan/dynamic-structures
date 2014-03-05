@@ -11,9 +11,7 @@ void Push(char c, stack *&a)
 {
 	stack *t = new stack;
 	t->data = c;
-	t->next = NULL;
-	if (a!= NULL)
-		t->next = a;
+	t->next = a;
 	a = t;
 }
 
@@ -22,12 +20,6 @@ char Pop(stack *&a)
 	if (a == NULL)
 		return 7;
 	char res = a->data;
-	if (a->next == NULL)
-	{
-		delete a;
-		a = NULL;
-		return res;
-	}
 	stack *t = a->next;
 	delete a;
 	a = t;
@@ -40,6 +32,7 @@ void Clean(stack *&a)
 		if (a->next == NULL)
 		{
 			delete a;
+			a = NULL;
 			continue;
 		}
 		stack *t = a->next;
@@ -55,8 +48,7 @@ bool IsCorrect(char *s)
 {
 	int len = strlen(s);
 	bool res = true;
-	stack *cup = new stack;
-	cup = NULL;
+	stack *cup = NULL;
 	for (int i = 0; i < len; ++i)
 	{
 		if ((s[i] == '}') || (s[i] == ']') || (s[i] == ')'))
