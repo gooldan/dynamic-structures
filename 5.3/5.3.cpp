@@ -4,95 +4,82 @@
 using namespace std;
 struct stack
 {
-	stack *next, *head;
-	char data[10];
-	int size = 0;
+	stack *next;
+	int data;
 };
-void Push(char *s, stack *&a)
+void Push(char c, stack *&a)
 {
 	stack *t = new stack;
-	int len = strlen(s);
-	for (int i = 0; i <= len; ++i)
-	{
-		t->data[i] = s[i];
-	}
-	t->next = a->head;
-	a->head = t;
-	a->size++;
+	t->data = c;
+	t->next = a;
+	a = t;
 }
-char* Pop(stack *&a)
+
+int Pop(stack *&a)
 {
-	if (a->size == 0)
-		return "";
-	int len = strlen(a->head->data);
-	char  *res = new char[len];
-	for (int i = 0; i <= len; ++i)
-	{
-		res[i] = a->head->data[i];
-	}
-	stack *t = a->head;
-	a->head = t->next;
-	delete t;
-	a->size--;
+	if (a == NULL)
+		return 0;
+	int res = a->data;
+	stack *t = a->next;
+	delete a;
+	a = t;
 	return res;
 }
 void Clean(stack *&a)
 {
-	while (a->size)
+	while (a)
 	{
-		stack *t = a->head;
-		a->head = t->next;
-		delete t;
-		a->size--;
+		if (a->next == NULL)
+		{
+			delete a;
+			a = NULL;
+			continue;
+		}
+		stack *t = a->next;
+		delete a;
+		a = t;
 	}
 }
 bool IsEmpty(stack *&a)
 {
-	return (a->size == 0);
+	return (a == NULL);
 }
-void sti(int a, char *&buffer)
+char* sti(int a,char buffer [])
 {
 	int k = (int)log10(a);
-	buffer = new char[k];
 	for (int i = k; i >= 0; --i)
 	{
 		buffer[i] = a % 10 + '0';
 		a /= 10;
 	}
 	buffer[++k] = '\0';
+	return buffer;
 }
 #pragma warning(disable: 4996)
 int main(int argc, char *argv[])
 {
 	stack *cup = new stack;
-
-
+	cup = NULL;
 	for (int i = 1; i < argc; i++)
 	{
-		char *s = "";
 		if (argv[i][0] == '+')
-			sti(atoi(Pop(cup)) + atoi(Pop(cup)), s);
+			Push(Pop(cup) + Pop(cup),cup);
 		else
 		if (argv[i][0] == '*')
-			sti(atoi(Pop(cup)) * atoi(Pop(cup)), s);
+			Push(Pop(cup) * Pop(cup), cup);
 		else
 		if (argv[i][0] == '/'){
-			int t1 = atoi(Pop(cup));
-			int t2=atoi(Pop(cup));
-			sti(t2 / t1, s);
+			int t1 = Pop(cup);
+			int t2 = Pop(cup);
+			Push(t2/t1, cup);
 		}
 		else
-			s = argv[i];
-
-		Push(s, cup);
-
+		{
+			Push(atoi(argv[i]), cup);
+		}
 	}
-	char *s = "";
-	if (!IsEmpty(cup))
-		s = Pop(cup);
+
+	cout<<Pop(cup);
 	Clean(cup);
-	int len = strlen(s);
-	for (int i = 0; i < len; ++i)
-		cout << s[i];
 	return EXIT_SUCCESS;
-}
+}
