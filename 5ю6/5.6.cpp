@@ -59,7 +59,7 @@ int Queue::pop()
 	mas[first] = 0;
 	if (size() == 1)
 	{
-		last = 0;
+		last = -1;
 		first = 0;
 	}
 	if (first == MAX - 1)
@@ -86,7 +86,8 @@ int main()
 		cout << b.front()<<" ";
 		b.pop();
 	}
-	cout << endl << b.pop() << " - IS A WINNER!!";
+	cout << endl << b.pop() << " - IS A WINNER!! ";
+	cout<<b.isEmpty();
 	int i;
 	cin >> i;
 

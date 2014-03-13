@@ -94,7 +94,7 @@ Polynominal Polynominal::operator*(Polynominal x)
 	Polynominal t;
 	for (int i = 0; i < MAX; ++i)
 	for (int j = 0; j < MAX; ++j)
-	if (i + j < MAX - 1 && x.a[i] != 0)
+	if (i + j < MAX && x.a[j] != 0)
 		t.a[i + j] += a[i] * x.a[j];
 	return t;
 }

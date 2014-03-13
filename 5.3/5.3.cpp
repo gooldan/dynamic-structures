@@ -44,17 +44,6 @@ bool IsEmpty(stack *&a)
 {
 	return (a == NULL);
 }
-char* sti(int a,char buffer [])
-{
-	int k = (int)log10(a);
-	for (int i = k; i >= 0; --i)
-	{
-		buffer[i] = a % 10 + '0';
-		a /= 10;
-	}
-	buffer[++k] = '\0';
-	return buffer;
-}
 #pragma warning(disable: 4996)
 int main(int argc, char *argv[])
 {
@@ -64,6 +53,12 @@ int main(int argc, char *argv[])
 	{
 		if (argv[i][0] == '+')
 			Push(Pop(cup) + Pop(cup),cup);
+		else
+		if (argv[i][0] == '-'){
+			int t1 = Pop(cup);
+			int t2 = Pop(cup);
+			Push(t2 - t1, cup);
+		}
 		else
 		if (argv[i][0] == '*')
 			Push(Pop(cup) * Pop(cup), cup);
