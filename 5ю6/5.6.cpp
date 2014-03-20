@@ -47,6 +47,13 @@ void Queue::push(int x)
 {
 	if (isFull())
 		return;
+	if (isEmpty())
+	{
+		last = 0;
+		first = 0;
+		mas[last] = x;
+		return;
+	}
 	if (last == MAX - 1)
 		last = -1;
 	mas[++last] = x;
@@ -88,6 +95,8 @@ int main()
 	}
 	cout << endl << b.pop() << " - IS A WINNER!! ";
 	cout<<b.isEmpty();
+	b.push(1);
+	cout << b.size();
 	int i;
 	cin >> i;
 
