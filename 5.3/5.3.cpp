@@ -47,8 +47,7 @@ bool IsEmpty(stack *&a)
 #pragma warning(disable: 4996)
 int main(int argc, char *argv[])
 {
-	stack *cup = new stack;
-	cup = NULL;
+	stack *cup = NULL;
 	for (int i = 1; i < argc; i++)
 	{
 		if (argv[i][0] == '+')
