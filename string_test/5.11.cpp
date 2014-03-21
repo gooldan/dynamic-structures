@@ -2,7 +2,7 @@
 #include <iostream>
 #include "my_1_string.h"
 using namespace std;
-//средняя трудоемкость О(1)
+//medium complexity is О(1)
 int main()
 {
 	String s("avcddd");
