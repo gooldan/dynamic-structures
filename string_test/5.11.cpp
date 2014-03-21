@@ -2,7 +2,7 @@
 #include <iostream>
 #include "my_1_string.h"
 using namespace std;
-
+//средняя трудоемкость О(1)
 int main()
 {
 	String s("avcddd");
@@ -31,7 +31,6 @@ int main()
 	ss.clear();
 	cin >> ss;
 	cout << ss + s;
-
 	int i;
 	cin >> i;
 }
