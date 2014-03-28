@@ -3,12 +3,10 @@
 ///counts new size if size+n+1>volume
 int addingVolumeCheck(int newsize, int volume)
 {
-	int i = 0;
-	while (volume*(int)pow(2, i) - 1 < newsize)
-		i++;
-	if (i == 0)
-		return volume;
-	return volume*(int)pow(2, i);
+	int i = 1;
+	while (volume*i - 1 <= newsize)
+		i*=2;
+	return volume*i;
 }
 int max(int a, int b)
 {
@@ -16,14 +14,10 @@ int max(int a, int b)
 }
 int deletingVolumeCheck(int newsize, int volume)
 {
-	int i = 0;
-	if (volume >= 2 * (newsize + 1))
-	{
-		while (volume / (int)pow(2, i) >= max(newsize + 1, cMinSize))
-			i++;
-	}
-	if (i == 0) return volume;
-	return volume / (int)pow(2, --i);
+	int i = 2;
+		while (volume / i >= max(newsize + 1, cMinSize))
+			i*=2;
+	return volume*2 / i;
 }
 String::String(int size, int capacity)
 {
@@ -64,6 +58,7 @@ String &String:: operator=(const String &obj)
 {
 	if (this != &obj)
 	{
+		delete[]p;
 		size = obj.size;
 		volume = obj.volume;
 		p = new char[volume];
@@ -223,14 +218,8 @@ String String::operator+(String s1)
 }
 String String::operator+=(String s1)
 {
-	char* newString = new char[s1.size + 1];
-	for (int i = 0; i < s1.size; ++i)
-	{
-		newString[i] = s1.p[i];
-	}
-	newString[s1.size] = '\0';
-	this->insert(size, newString);
-	delete[]newString;
+	
+	this->insert(size, s1.p);
 	return *this;
 }
 char String::operator[](int ind)
@@ -248,6 +237,10 @@ ostream &operator<<(ostream &stream, const String &s) {
 }
 istream &operator>>(istream &stream, String &s) {
 	char c = '2';
+	//delete[] s.p;
+	s.p[0] = '\0';
+	s.volume = cMinSize;
+	s.size = 0;
 	char str[100];
 	int i = 0;
 	while (c != '\n')
@@ -256,6 +249,6 @@ istream &operator>>(istream &stream, String &s) {
 		str[i++] = c;
 	}
 	str[--i] = '\0';
-	s.insert(s.size, str);
+	s.insert(0, str);
 	return stream;
 }

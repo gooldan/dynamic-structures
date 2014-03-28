@@ -3,6 +3,10 @@
 #include "my_1_string.h"
 using namespace std;
 //medium complexity is Î(1)
+void print(String s)
+{
+	cout << s;
+}
 int main()
 {
 	String s("avcddd");
@@ -28,9 +32,10 @@ int main()
 	cout << s << endl;
 	s.erase(3, 9);
 	cout << s << endl;
-	ss.clear();
 	cin >> ss;
-	cout << ss + s;
+	String t=ss + s;
+	cout << t<<endl;
+	print(t);
 	int i;
 	cin >> i;
 }
