@@ -12,8 +12,8 @@ public:
 	void delNullStr();//удаляет нулевые строки
 	void findFreeVar();
 	void basisBuild();
-	double res[MaxSize][MaxSize];
-	int res_m=-1;
+	double getResElem(int i, int j);
+	double getResM();
 	void show();
 private:
 	double a[MaxSize][MaxSize];
@@ -21,4 +21,6 @@ private:
 	int numFreeVar = 0; //количество св переменных
 	double sols[MaxSize];//здесь хранятся конкретные решения для текущей ситуации
 	int m, n;
+	int res_m = -1;
+	double res[MaxSize][MaxSize];
 };
