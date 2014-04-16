@@ -8,17 +8,19 @@ public:
 	void toTriangle();
 	void noSolution();
 	void partialSolution();
-	void Solve();
-	void delNullStr();//удаление нулевых строк
+	void Solve();//СЂРµС€Р°РµС‚ РјР°С‚СЂРёС†Сѓ РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР°
+	void delNullStr();//СѓРґР°Р»СЏРµС‚ РЅСѓР»РµРІС‹Рµ СЃС‚СЂРѕРєРё
 	void findFreeVar();
 	void basisBuild();
-	double res[MaxSize][MaxSize];
-	int res_m=-1;
+	double getResElem(int i, int j);
+	double getResM();
 	void show();
 private:
 	double a[MaxSize][MaxSize];
-	int freeVar[MaxSize];//массив где хранится номер i-той свободной переменной
-	int numFreeVar = 0; //количество св переменных
-	double sols[MaxSize];
+	int freeVar[MaxSize];//РјР°СЃСЃРёРІ РіРґРµ С…СЂР°РЅРёС‚СЃСЏ РЅРѕРјРµСЂ i-С‚РѕР№ СЃРІРѕР±РѕРґРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
+	int numFreeVar = 0; //РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРІ РїРµСЂРµРјРµРЅРЅС‹С…
+	double sols[MaxSize];//Р·РґРµСЃСЊ С…СЂР°РЅСЏС‚СЃСЏ РєРѕРЅРєСЂРµС‚РЅС‹Рµ СЂРµС€РµРЅРёСЏ РґР»СЏ С‚РµРєСѓС‰РµР№ СЃРёС‚СѓР°С†РёРё
 	int m, n;
+	int res_m = -1;
+	double res[MaxSize][MaxSize];
 };

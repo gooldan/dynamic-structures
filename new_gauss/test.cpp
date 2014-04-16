@@ -11,8 +11,8 @@ bool test_gauss(const char *in_name, const char *out_name)
 	double a[MaxSize][MaxSize];
 	in >> m >> n;
 	for (int i = 0; i < m; ++i)
-	for (int j = 0; j < n; ++j)
-		in >> a[i][j];
+		for (int j = 0; j < n; ++j)
+			in >> a[i][j];
 
 	Gauss Matrix(a, m, n);
 	Matrix.Solve();
@@ -21,14 +21,14 @@ bool test_gauss(const char *in_name, const char *out_name)
 	int m_rows;
 	out >> m_rows;
 	for (int i = 0; i < m_rows; ++i)
-	for (int j = 0; j < n - 1; ++j)
-		in >> res[i][j];
-	if (m_rows == Matrix.res_m)
+		for (int j = 0; j < n - 1; ++j)
+			in >> res[i][j];
+	if (m_rows == Matrix.getResM())
 	{
 		for (int i = 0; i < m_rows; ++i)
-		for (int j = 0; j < n - 1; ++j)
-		if (res[i][j] - Matrix.res[i][j]>vm)
-			return false;
+			for (int j = 0; j < n - 1; ++j)
+			if (res[i][j] - Matrix.getResElem(i,j)>vm)
+				return false;
 		return true;
 	}
 	return false;
@@ -74,7 +74,7 @@ void main()
 		cout << "Test 7 failed!" << endl;
 		return;
 	}
-	cout << "All tests completed! SUCCESS!";
+	cout << "All tests are completed! SUCCESS!";
 	int i;
 	cin >> i;
 }
