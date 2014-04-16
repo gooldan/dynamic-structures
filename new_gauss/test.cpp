@@ -74,7 +74,7 @@ void main()
 		cout << "Test 7 failed!" << endl;
 		return;
 	}
-	cout << "All tests completed! SUCCESS!";
+	cout << "All tests are completed! SUCCESS!";
 	int i;
 	cin >> i;
 }
