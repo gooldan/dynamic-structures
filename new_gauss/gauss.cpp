@@ -1,14 +1,7 @@
 #include "gauss.h"
-#include <math.h>
+#include <cmath>
 #include <iostream>;
 using namespace std;
-void swap(double &a, double &b)
-{
-	double c = a;
-	a = b;
-	b = c;
-	return;
-}
 void Gauss::show()
 {
 	for (int i = 0; i < m; ++i)
@@ -35,22 +28,25 @@ void Gauss::toTriangle()
 {
 	double k;
 	int max;
-	int r = 0; //текущий ряд
+	int r = 0; //С‚РµРєСѓС‰РёР№ СЂСЏРґ
 	for (int c = 0; c < n; ++c)
 	{
 		max = r;
 		//находим максимальный по модулю элемент из столбца
-		for (int t = r; t<m; ++t)
+		for (int t = r; t < m; ++t)
+		//РЅР°С…РѕРґРёРј РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РїРѕ РјРѕРґСѓР»СЋ СЌР»РµРјРµРЅС‚ РёР· СЃС‚РѕР»Р±С†Р°
+		for (int t = r; t < m; ++t)
 		{
-			if (abs(a[t][c])>abs(a[max][c]))
+			if ( abs(a[t][c]) > abs(a[max][c]) )
 				max = t;
 		}
-		//если столбец нулевой, ничего не меняем
-		if (a[max][c] == 0) {
+		//РµСЃР»Рё СЃС‚РѕР»Р±РµС† РЅСѓР»РµРІРѕР№, РЅРёС‡РµРіРѕ РЅРµ РјРµРЅСЏРµРј
+		if (a[max][c] == 0) 
+		{
 			continue;
 		}
 
-		//делаем строку с максимальным по модулю элементом первой сверху
+		//РґРµР»Р°РµРј СЃС‚СЂРѕРєСѓ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РїРѕ РјРѕРґСѓР»СЋ СЌР»РµРјРµРЅС‚РѕРј РїРµСЂРІРѕР№ СЃРІРµСЂС…Сѓ
 		for (int j = c; j < n; ++j)
 		{
 			swap(a[r][j], a[max][j]);
@@ -78,13 +74,13 @@ Gauss::Gauss(double _a[MaxSize][MaxSize], int _m, int _n)
 	m = _m;
 	n = _n;
 	for (int i = 0; i < m; ++i)
-	for (int j = 0; j < n; ++j)
-		a[i][j] = _a[i][j];
+		for (int j = 0; j < n; ++j)
+			a[i][j] = _a[i][j];
 
 }
 void Gauss::delNullStr()
 {
-	//убираем нулевые строки
+	//СѓР±РёСЂР°РµРј РЅСѓР»РµРІС‹Рµ СЃС‚СЂРѕРєРё
 	for (int i = m - 1; i >= 0; --i)
 	{
 		bool tr = true;
@@ -135,7 +131,7 @@ void Gauss::basisBuild()
 	}
 	int p;
 	double sum = 0;
-	//базис пространства решений
+	//Р±Р°Р·РёСЃ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІР° СЂРµС€РµРЅРёР№
 	for (int i = 0; i<numFreeVar; ++i)
 	{
 		sols[freeVar[i]] = 1;
@@ -171,7 +167,8 @@ void Gauss::Solve()
 {
 	toTriangle();
 	findFreeVar();
-	if (res_m == 0) return;
+	if (res_m == 0) 
+		return;
 	delNullStr();
 	partialSolution();
 	if (numFreeVar != 0)
@@ -222,4 +219,12 @@ void Gauss::noSolution()
 {
 	res_m = 0;
 	return;
+} 
+double Gauss::getResElem(int i, int j)
+{
+	return res[i][j];
+}
+double Gauss::getResM()
+{
+	return res_m;
 }
