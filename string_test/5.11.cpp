@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "my_1_string.h"
+#include <fstream>
 using namespace std;
 //medium complexity is Î(1)
 void print(String s)
@@ -9,6 +10,7 @@ void print(String s)
 }
 int main()
 {
+	ifstream in("a.txt");
 	String s("avcddd");
 	cout << s << endl;
 	s.add('a');
@@ -32,7 +34,7 @@ int main()
 	cout << s << endl;
 	s.erase(3, 9);
 	cout << s << endl;
-	cin >> ss;
+	in >> ss;
 	String t=ss + s;
 	cout << t<<endl;
 	print(t);

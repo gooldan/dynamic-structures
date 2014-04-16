@@ -237,15 +237,16 @@ ostream &operator<<(ostream &stream, const String &s) {
 }
 istream &operator>>(istream &stream, String &s) {
 	char c = '2';
-	//delete[] s.p;
 	s.p[0] = '\0';
 	s.volume = cMinSize;
 	s.size = 0;
 	char str[100];
 	int i = 0;
-	while (c != '\n')
+	stream >> c;
+	while (c != '\n' && !stream.eof())
 	{
-		c = getchar();
+		
+		stream >> c;
 		str[i++] = c;
 	}
 	str[--i] = '\0';
