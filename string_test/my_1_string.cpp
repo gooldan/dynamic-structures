@@ -1,5 +1,4 @@
 #include "my_1_string.h"
-
 ///counts new size if size+n+1>volume
 int addingVolumeCheck(int newsize, int volume)
 {
@@ -237,19 +236,48 @@ ostream &operator<<(ostream &stream, const String &s) {
 }
 istream &operator>>(istream &stream, String &s) {
 	char c = '2';
-	s.p[0] = '\0';
-	s.volume = cMinSize;
-	s.size = 0;
+	s.clear();
 	char str[100];
 	int i = 0;
-	stream >> c;
-	while (c != '\n' && !stream.eof())
+	stream.getline(str, 100);
+	/*stream >> c;
+	while (c != '\n')// && !stream.eof())
 	{
-		
-		stream >> c;
-		str[i++] = c;
+	str[i++] = c;
+	stream >> c;
 	}
-	str[--i] = '\0';
+	*/
 	s.insert(0, str);
 	return stream;
+}
+bool String::operator==(String s)
+{
+	if (size != s.size)
+		return false;
+	for (int i = 0; i < size;++i)
+		if (s[i] != p[i])
+			return false;
+	return true;
+}
+bool String::operator==(char *s)
+{
+	String s1(s);
+	return *this == s1;
+}
+bool String::operator!=(char *s)
+{
+	String s1(s);
+	return !(*this == s1);
+}
+bool String::operator!=(String s)
+{
+	return !(*this == s);
+}
+bool operator==(char *s, String s1)
+{
+	return (s1 == s);
+}
+bool operator!=(char *s, String s1)
+{
+	return (s1 != s);
 }

@@ -38,6 +38,8 @@ int main()
 	String t=ss + s;
 	cout << t<<endl;
 	print(t);
+	String sss("avdcd");
+	cout << "  " << ( sss!="avcd");
 	int i;
 	cin >> i;
 }

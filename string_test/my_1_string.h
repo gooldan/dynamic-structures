@@ -22,9 +22,14 @@ public:
 	char operator[](int ind);
 	friend ostream &operator<<(ostream &stream, const String &s);
 	friend istream &operator>>(istream &stream, String &s);
-
+	bool operator==(char* s);
+	bool operator!=(char* s);
+	bool operator==(String s);
+	bool operator!=(String s);
 private:
 	char *p;
 	int size;
 	int volume;
 };
+bool operator==(char *s, String s1);
+bool operator!=(char *s, String s1);
