@@ -3,10 +3,8 @@ const int MaxSize = 100;
 const double vm = 1e-6;
 class Gauss{
 public:
-	Gauss();
 	Gauss(double b[MaxSize][MaxSize], int m, int n);
 	void toTriangle();
-	void noSolution();
 	void partialSolution();
 	void Solve();//решает матрицу методом Гаусса
 	void delNullStr();//удаляет нулевые строки

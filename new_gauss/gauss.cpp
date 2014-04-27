@@ -63,10 +63,6 @@ void Gauss::toTriangle()
 
 	}
 }
-Gauss::Gauss()
-{
-
-}
 Gauss::Gauss(double _a[MaxSize][MaxSize], int _m, int _n)
 {
 	m = _m;
@@ -105,7 +101,7 @@ void Gauss::findFreeVar()
 		}
 		if (i + t + 1 >= n)
 		{
-			noSolution();
+			res_m = 0;
 			return;
 		}
 		while ((i + t + 1<n-1) && a[i + 1][i + t + 1] == 0)
@@ -212,11 +208,6 @@ void Gauss::partialSolution()
 	for (int i = 0; i < n - 1; ++i)
 		res[0][i] = sols[i];
 	res_m = 1;
-}
-void Gauss::noSolution()
-{
-	res_m = 0;
-	return;
 } 
 double Gauss::getResElem(int i, int j)
 {
