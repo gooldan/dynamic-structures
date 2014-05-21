@@ -78,19 +78,19 @@ int main()
 	Derived1 b(3, 5, 6);
 	cout << a.examine(2) << endl;
 	a.print();
-	cout << endl << b.examine(2) << endl;
+	cout << endl << b.examine(7) << endl;
 	b.print();
 
 	///second version
-
-	cout << -2%6<<" "<<endl << " ======================= " << endl;
+	/*
+	cout <<" "<<endl << " ======================= " << endl;
 	Base c(1, 3);
 	Derived2 d(3, 5, 6);
 	cout << c.examine(2) << endl;
 	c.print();
 	cout << endl << d.examine(2) << endl;
 	d.print();
-
+	*/
 	int i;
 	cin >> i;
 

@@ -8,20 +8,12 @@ int stoi(String s, int base=10){
 	return ans;
 
 }
-Int::Int() 
-{
-	num = 0;
-}
 
 Int::Int(int _num)
 {
 	num = _num;
 }
 
-Int::Int(String s)
-{
-	num = stoi(s);
-}
 
 Int::Int(String s, int base)
 {
@@ -69,4 +61,9 @@ Double Double::operator %(int a)
 {
 	int factor = num / a;
 	return num - (a*factor);
+}
+Double Double::operator %(Int a)
+{
+	int factor = num / a.num;
+	return num - (a.num*factor);
 }

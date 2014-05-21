@@ -52,7 +52,7 @@ int main()
 	} while (s != "exit");
 	cout << "Your travel is over. Profit from the last travel is: ";
 	Bus->profit();
-	
+	delete Bus;
 	int i;
 	cin >> i;
 }

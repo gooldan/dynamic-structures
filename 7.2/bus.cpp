@@ -2,12 +2,12 @@
 #include <iostream>
 
 using namespace std;
-bool GreedyBus::drive(int distance)
+int GreedyBus::drive(int distance)
 {
-	money += distance*pCount;
-
-	return Vehicle::drive(distance);
 	
+	int dist = Vehicle::drive(distance);
+	money += dist*pCount;
+	return dist;
 }
 void GreedyBus::goIn(int count)
 {

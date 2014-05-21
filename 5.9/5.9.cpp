@@ -20,6 +20,9 @@ int main()
 	for (int i = 0; i < z.getSize(); i++)
 		cout << x[i] << " ";
 
+	Array<int> *test = new Array<int>;
+	delete test;
+
 	int i;
 	cin >> i;
 }

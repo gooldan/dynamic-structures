@@ -22,7 +22,7 @@ public:
 		cout << "My wheel diametr is: " << wheelDiam << endl;
 	}
 
-private:
+protected:
 	int wheelDiam;
 };
 class FlyingVehicle :virtual public  Vehicle
@@ -35,7 +35,7 @@ public:
 		cout << "I have " << turbineNum << " turbines" << endl;
 	}
 
-private:
+protected:
 	int turbineNum;
 };
 class Aircraft :public FlyingVehicle,public GroundVehicle

@@ -17,51 +17,57 @@ void Vehicle::turn(int d)
 		
 	direction = ((direction + 4) + d) % 4;
 }
-bool Vehicle::drive(int distance)
+int Vehicle::drive(int distance)
 {
+	int val;
 	if (direction == 0)
 	{
-		y -= distance;
+		val = y;
+		y -=distance;
+		
 		if (y < 0)
 		{
 			y = 0;
-			return false;
+			return val;
 		}
 		else
-			return true;
+			return distance;
 	}
 	if (direction == 1)
 	{
+		val = 10 - x;
 		x += distance;
 		if (x > 10)
 		{
 			x = 10;
-			return false;
+			return val;
 		}
 		else
-			return true;
+			return distance;
 	}
 	if (direction == 2)
 	{
+		val = 10 - y;
 		y += distance;
 		if (y > 10)
 		{
 			y = 10;
-			return false;
+			return val;
 		}
 		else
-			return true;
+			return distance;
 	}
 	if (direction == 3)
 	{
+		val = x;
 		x -= distance;
 		if (x < 0)
 		{
 			x = 0;
-			return false;
+			return val;
 		}
 		else
-			return true;
+			return distance;
 	}
 }
 void Vehicle::position()

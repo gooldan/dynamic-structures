@@ -43,6 +43,8 @@ Array<T>::Array(int mSize, int initVal = 0)
 template <class T>
 Array<T>::~Array()
 {
+	if (size == 0) 
+		return;
 	delete[] p;
 	size = 0;
 }

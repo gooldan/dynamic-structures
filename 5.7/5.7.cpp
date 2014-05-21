@@ -15,6 +15,7 @@ int main()
 	a.print();
 	Double D(-12.3);
 	(D % 5).print();
+	(D%b).print();
 	int i;
 	cin >> i;
 }

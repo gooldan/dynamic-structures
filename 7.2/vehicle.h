@@ -6,7 +6,7 @@ public:
 	Vehicle();
 	Vehicle(int _x, int _y, int _direction);
 	void turn(int d); ///-1 =left, 1=right 
-	bool drive(int distance);
+	int drive(int distance);
 	void position();
 private:
 	int x, y;
