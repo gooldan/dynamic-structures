@@ -35,7 +35,11 @@ Int Int::operator--()
 	num--;
 	return (*this);
 }
-
+Int Int::operator-()
+{
+	num = -num;
+	return (*this);
+}
 Int operator -(Int &a, Int &b)
 {
 	Int c(a);

@@ -72,5 +72,13 @@ int Vehicle::drive(int distance)
 }
 void Vehicle::position()
 {
-	cout << x << " " << y << endl;
+	cout << x << " " << y << " ";
+	if (direction == 0) cout << "up";
+	else
+	if (direction == 1) cout << "right";
+	else
+	if (direction == 2) cout << "down";
+	else
+	cout << "left";
+	cout<<endl;
 }

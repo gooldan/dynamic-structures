@@ -59,8 +59,10 @@ template <class T>
 Array<T> &Array<T>::operator=(Array<T> &a)
 {
 	if (this == &a) return *this;
+	if (size != 0)
+		delete[] p;
 	size = a.size;
-	delete[] p;
+	
 	p = new T[size];
 	for (int i = 0; i < size; i++)
 		p[i] = a.p[i];

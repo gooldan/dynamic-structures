@@ -13,6 +13,8 @@ int main()
 	d.print();
 	a = d - c;
 	a.print();
+	a = -a;
+	a.print();
 	Double D(-12.3);
 	(D % 5).print();
 	(D%b).print();

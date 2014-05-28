@@ -14,7 +14,8 @@ public:
 private:
 	double num;
 };
-
+
+
 class Int{
 public:
 	Int(int _num=0);
@@ -22,6 +23,7 @@ public:
 	void print();
 	Int operator--(int notused);
 	Int operator--();
+	Int operator-();
 	friend Int operator -(Int &a, Int &b);
 	friend Double Double::operator%(Int a);
 private:
