@@ -1,4 +1,4 @@
-#include "MyList.h"
+#include "list.h"
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -6,6 +6,10 @@ using namespace std;
 List::List()
 {
 	size = 0;
+	ftail = new Element;
+	ftail->next = NULL;
+	ftail->prev = tail;
+	ftail->data = 117;
 	tail = NULL;
 	head = NULL;
 }
@@ -20,6 +24,8 @@ void List::pushFront(const int &x)
 	{
 		head = p;
 		tail = p;
+		ftail->prev = tail;
+		tail->next = ftail;
 	}
 	else
 	{
@@ -40,12 +46,16 @@ void List::pushBack(const int &x)
 	{
 		tail = p;
 		head = p;
+		ftail->prev = tail;
+		tail->next = ftail;
 	}
 	else
 	{
 		Element *h = tail;
 		tail = p;
 		tail->prev = h;
+		ftail->prev = tail;
+		tail->next = ftail;
 		h->next = p;
 	}
 	size++;
@@ -87,6 +97,8 @@ int List::popBack()
 		int t = tail->data;
 		delete tail;
 		tail = head;
+		ftail->prev = tail;
+		tail->next = ftail;
 		return t;
 	}
 	if (size == 0)
@@ -98,8 +110,9 @@ int List::popBack()
 	}
 	int t = tail->data;
 	Element *g = tail;
-	tail = tail->prev;
-	tail->next = NULL;
+	tail = tail->prev; 
+	ftail->prev = tail;
+	tail->next = ftail;
 	delete g;
 	return t;
 }
@@ -139,6 +152,8 @@ void List::reverse()
 			t = t->next;
 		}
 		tail = p;
+		ftail->prev = tail;
+		tail->next = ftail;
 		size = count + 1;
 	}
 	else
@@ -153,7 +168,7 @@ void List::show()
 	Element *t = head;
 	if (size > 2)
 	{
-		while (t->next != NULL)
+		while (t->next != ftail)
 		{
 			cout << t->data << " <-> ";
 			t = t->next;
@@ -174,10 +189,10 @@ void List::show()
 }
 void List::clear()
 {
-	if (size == 0) 
+	if (size == 0)
 		return;
 	Element *h = head;
-	while (h->next != NULL)
+	while (h->next != ftail)
 	{
 		h = h->next;
 		delete h->prev;
@@ -189,5 +204,103 @@ void List::clear()
 List::~List()
 {
 	clear();
+
+	delete ftail;
 }
 
+
+List::iterator List::begin()
+{
+	return iterator(head);
+}
+List::iterator List::end()
+{
+	return iterator(ftail);
+}
+bool List::iterator::operator==(const List::iterator &it) const
+{
+	if (element == it.element)
+		return true;
+	return false;
+}
+bool List::iterator::operator!=(const List::iterator &it) const
+{
+	if (element != it.element)
+		return true;
+	return false;
+}
+List::iterator List::iterator::operator++()
+{
+	if (element->next)
+		element = element->next;
+	iterator copy(element);
+	return copy;
+
+}List::iterator List::iterator::operator--()
+{
+	if (element->prev != nullptr)
+		element = element->prev;
+	iterator copy(element);
+	return copy;
+
+}
+int &List::iterator::operator*() const
+{
+	return element->data;
+}
+List::Element *List::iterator::operator->() const
+{
+	return element;
+}
+List::iterator List::insert(List::iterator position, const int &x)
+{
+	Element *newElem = new Element;
+	newElem->data = x;
+	newElem->next = position.operator->();
+	newElem->prev = position->prev;
+	if (position->prev)
+		newElem->prev->next = newElem;
+	else
+		head = newElem;
+	if (position->next)
+		newElem->next->prev = newElem;
+	else
+	{
+		tail = newElem;
+		ftail->prev = tail;
+		tail->next = ftail;
+	}
+
+	size++;
+	return iterator(newElem);
+}
+
+List::iterator List::erase(List::iterator position)
+{
+	Element * elem = position.operator->();
+	//if(elem->next)
+	if (elem->prev)
+	{
+		elem->prev->next = elem->next;
+		elem->next->prev = elem->prev;
+		if (elem->next == ftail)
+			tail = elem->prev;
+	}
+	else if (size==1)
+	{
+		position = end();
+		size = 0;
+		head = tail = 0;
+		ftail->prev = tail;
+		return position;
+	}
+	else
+		head = position->next;
+	elem->next->prev = 0;
+	position = iterator(elem);
+	++position;
+	size--;
+	delete elem;
+	return position;
+
+}

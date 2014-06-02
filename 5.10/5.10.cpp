@@ -11,6 +11,12 @@ int main()
 	t.pushFront(4);
 	t.pushBack(14);
 	t.show();
+	t.clear();
+	t.pushBack(2);
+	t.pushBack(52);
+	t.pushFront(3);
+	t.pushFront(4);
+	t.pushBack(14);
 	t.reverse();
 
 	t.show();

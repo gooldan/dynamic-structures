@@ -154,8 +154,8 @@ int ninepointtwo()
 int main()
 {
 	//ninepointone();
-	//ninepointtwo();
-	AVLTree *t=new AVLTree;
+	ninepointtwo();
+	/*AVLTree *t=new AVLTree;
 	for (int i = 0; i < 10; i++)
 	{
 		t->insert(rand() % 117 * 3);
@@ -181,7 +181,7 @@ int main()
 	}
 	t->remove(v);
 	cout << endl;
-	t->breadthFirstTraversal();
+	t->breadthFirstTraversal();*/
 
 	int i;
 	cin >> i;
