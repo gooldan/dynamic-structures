@@ -36,12 +36,14 @@ class Derived1 :public Base{
 public:
 	Derived1(double _a, double _b, double _c) :Base(_a, _b)
 	{
-		c = examine(_c);
+		c = Base::examine(_c);
 	}
 	double examine(double x)
 	{
-		c = Base::examine(x);
-		return c;
+		
+		int oldc = c;
+		c = max(Base::examine(x),c);
+		return min(min(c,x),min(oldc,c));
 	}
 	void print()
 	{
@@ -51,46 +53,20 @@ public:
 private:
 	double c;
 };
-class Derived2 :public Base{
-public:
-	Derived2(double _a, double _b, double _c) :Base(_a, _b)
-	{
-		c = examine(_c);
-	}
-	double examine(double x)
-	{
-		if (x < c)
-			x = c;
-		c = Base::examine(x);
-		return c;
-	}
-	void print()
-	{
-		Base::print();
-		cout << c << " ";
-	}
-private:
-	double c;
-};
+
 int main()
 {
 	Base a(1, 3);
 	Derived1 b(3, 5, 6);
+	a.print();
+	cout << endl;
 	cout << a.examine(2) << endl;
 	a.print();
+	cout << endl;
+	b.print();
 	cout << endl << b.examine(7) << endl;
 	b.print();
-
-	///second version
-	/*
-	cout <<" "<<endl << " ======================= " << endl;
-	Base c(1, 3);
-	Derived2 d(3, 5, 6);
-	cout << c.examine(2) << endl;
-	c.print();
-	cout << endl << d.examine(2) << endl;
-	d.print();
-	*/
+	cout << endl << endl;
 	int i;
 	cin >> i;
 

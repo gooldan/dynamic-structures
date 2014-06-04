@@ -1,26 +1,69 @@
 #include <iostream>
-#include <list>
+#include <vector>
 #include "my_1_string.h"
 using namespace std;
+const int h = 233;
+int a[8] = { rand() % 117, rand() % 117,
+rand() % 117, rand() % 117, rand() % 117,
+rand() % 117, rand() % 117, rand() % 117, };
 
+int HashF(String s)
+{
+	int sum = 0;
+	int size = s.lenth();
+	for (int i = 0; i < size; ++i)
+		sum += a[i] * s[i];
+	return sum % h;
+}
+
+class hashTable
+{
+public:
+	void add(String s)
+	{
+		int hv = HashF(s);
+		bool f = true;
+		for (int i = 0; i < table[hv].size(); i++)
+			if (table[hv][i] == s)
+			{
+				f = false;
+				count[hv][i]++;
+				break;
+			}
+			if (f)
+			{
+				table[hv].push_back(s);
+				count[hv].push_back(1);
+			}
+	}
+	void printAndDestroy()
+	{
+		for (int i = 0; i < 233; ++i)
+		{
+
+			while (!table[i].empty())
+			{
+				cout << endl;
+				cout << table[i].back() << " - " <<count[i].back();
+				table[i].pop_back();
+				count[i].pop_back();
+			}
+		}
+	}
+private:
+	vector<String> table[h];
+	vector<int> count[h];
+};
 int main()
 {
-	int *ht = new int[233];
-	list<String> *t = new list<String>[233];
-	for (int i = 0; i < 233; ++i)
-		ht[i] = 0;
+	hashTable ht;
 	String s;
 	cin >> s;
-	String w;
-	int a[8] = { rand() % 117, rand() % 117,
-		rand() % 117, rand() % 117, rand() % 117,
-		rand() % 117, rand() % 117, rand() % 117, };
 	int len = s.lenth();
-	int sp = 0,h=0;
+	int sp = 0;
 	for (int i = 0; i < len+1;++i)
 	if (s[i] == ',' || s[i] == ' ' || s[i] == '.' || i == len)
 	{
-		h = 0;
 		if (abs(sp - i) <= 1)
 		{
 			sp = i+1;
@@ -30,31 +73,11 @@ int main()
 		String *s1=new String(8);
 		for (int j = sp; j < i; ++j)
 		{
-			h += s[j] * a[j % 8];
 			s1->add(s[j]);
 		}
-		h = h % 233;
-		
-		t[h].push_back(*s1);
-		
+		ht.add(*s1);
 		sp = i+1;
 	}
-	sp = 0;
-	for (int i= 0; i < 233; ++i)
-	{
-		if (!t[i].empty())
-		{
-			cout << endl;
-			cout << t[i].front() << " ";
-			int sv=0;
-			while (!t[i].empty())
-			{
-				sv++;
-				t[i].pop_back();
-			}
-			cout << "- " << sv;
-		}
-		
-	}
+	ht.printAndDestroy();
 	cin >> sp;
 }

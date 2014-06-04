@@ -44,8 +44,9 @@ public:
 	Aircraft(int id,int wd, int tn) :Vehicle(id),GroundVehicle(id,wd),FlyingVehicle(id,tn){};
 	void PrintFull()
 	{
-		GroundVehicle::PrintFull();
-		FlyingVehicle::PrintFull();
+		Vehicle::PrintMotor();
+		cout << "My wheel diametr is: " << wheelDiam << endl;
+		cout << "I have " << turbineNum << " turbines" << endl;
 		
 	}
 
