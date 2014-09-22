@@ -37,7 +37,8 @@ int main()
 	{
 		int j = 0;
 		j = tasks[i].deadline;
-		while (schedule[j--] != 0);
+		while (j >= 0 && schedule[j--] != 0)
+		;
 		if (j < 0) continue;
 		schedule[++j] = tasks[i].num;
 		sum += tasks[i].cost;

@@ -24,17 +24,17 @@ public:
 		int hv = HashF(s);
 		bool f = true;
 		for (int i = 0; i < table[hv].size(); i++)
-			if (table[hv][i] == s)
-			{
-				f = false;
-				count[hv][i]++;
-				break;
-			}
-			if (f)
-			{
-				table[hv].push_back(s);
-				count[hv].push_back(1);
-			}
+		if (table[hv][i] == s)
+		{
+			f = false;
+			count[hv][i]++;
+			break;
+		}
+		if (f)
+		{
+			table[hv].push_back(s);
+			count[hv].push_back(1);
+		}
 	}
 	void printAndDestroy()
 	{
@@ -44,7 +44,7 @@ public:
 			while (!table[i].empty())
 			{
 				cout << endl;
-				cout << table[i].back() << " - " <<count[i].back();
+				cout << table[i].back() << " - " << count[i].back();
 				table[i].pop_back();
 				count[i].pop_back();
 			}
@@ -61,22 +61,22 @@ int main()
 	cin >> s;
 	int len = s.lenth();
 	int sp = 0;
-	for (int i = 0; i < len+1;++i)
+	for (int i = 0; i < len + 1; ++i)
 	if (s[i] == ',' || s[i] == ' ' || s[i] == '.' || i == len)
 	{
-		if (abs(sp - i) <= 1)
+		if (abs(sp - i) < 1)
 		{
-			sp = i+1;
+			sp = i + 1;
 			continue;
 		}
 
-		String *s1=new String(8);
+		String *s1 = new String(8);
 		for (int j = sp; j < i; ++j)
 		{
 			s1->add(s[j]);
 		}
 		ht.add(*s1);
-		sp = i+1;
+		sp = i + 1;
 	}
 	ht.printAndDestroy();
 	cin >> sp;

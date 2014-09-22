@@ -92,9 +92,11 @@ public:
 	}
 	void print() const
 	{
+		cout << '(';
 		a->print();
 		cout << '+';
 		b->print();
+		cout << ')';
 	}
 	Expression *copy() const
 	{
@@ -125,9 +127,11 @@ public:
 	}
 	void print() const
 	{
+		cout << '(';
 		a->print();
 		cout << '-';
 		b->print();
+		cout << ')';
 	}
 	Expression *copy() const
 	{
@@ -159,9 +163,11 @@ public:
 	}
 	void print() const
 	{
+		cout << '(';
 		a->print();
 		cout << '*';
 		b->print();
+		cout << ')';
 	}
 	Expression *copy() const
 	{
@@ -191,9 +197,11 @@ public:
 	}
 	void print() const
 	{
+		cout << '(';		
 		a->print();
 		cout << '/';
 		b->print();
+		cout << ')';
 	}
 	Expression *copy() const
 	{
@@ -279,7 +287,7 @@ int Expression::count = 0;
 
 int main()
 {
-	Expression::showCount();
+	/*Expression::showCount();
 	Expression *v = new Var;
 	Expression *c = new Const(2);
 	Expression *m = new Mult(c->copy(), v->copy());
@@ -314,6 +322,14 @@ int main()
 	delete e;
 
 	Expression::showCount();
+	*/
+	Expression *a = new Const(2);
+	Expression *b = new Const(3);
+	Expression *g = new Const(4);
+	Expression *d = new Sum(a->copy(), b->copy());
+	Expression *f = new Mult(g->copy(), d->copy());
+	f->print();
+	cout << endl << f->evaluate(0) << endl;
 	int i;
 	cin >> i;
 }
