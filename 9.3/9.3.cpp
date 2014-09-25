@@ -70,12 +70,12 @@ int main()
 			continue;
 		}
 
-		String *s1 = new String(8);
+		String s1;
 		for (int j = sp; j < i; ++j)
 		{
-			s1->add(s[j]);
+			s1.add(s[j]);
 		}
-		ht.add(*s1);
+		ht.add(s1);
 		sp = i + 1;
 	}
 	ht.printAndDestroy();
