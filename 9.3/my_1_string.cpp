@@ -18,8 +18,9 @@ int deletingVolumeCheck(int newsize, int volume)
 			i*=2;
 	return volume*2 / i;
 }
-String::String(int size, int capacity)
+String::String(int _size, int capacity)
 {
+	size = _size;
 	volume = addingVolumeCheck(size, capacity);
 	p = new char[volume];
 	for (int i = 0; i < size; ++i)
